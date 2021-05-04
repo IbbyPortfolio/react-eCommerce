@@ -1,16 +1,38 @@
 import React from 'react';
-import './default.scss';
+import { Switch, Route } from 'react-router-dom';
 
-import Header from './componenets/Header';
+//layouts
+import MainLayout from './layouts/MainLayout';
+import HomepageLayout from './layouts/HomepageLayout';
+
+// pages
+import './default.scss';
 import Homepage from './pages/Homepage';
+import Registration from './pages/Registration';
 
 const App = (props) => {
    return (
       <div className='App'>
-         <Header />
-         <div className='main'>
-            <Homepage />
-         </div>
+         <Switch>
+            <Route
+               exact
+               path='/'
+               render={() => (
+                  <HomepageLayout>
+                     <Homepage />
+                  </HomepageLayout>
+               )}
+            />
+            <Route
+               exact
+               path='/registration'
+               render={() => (
+                  <MainLayout>
+                     <Registration />
+                  </MainLayout>
+               )}
+            />
+         </Switch>
       </div>
    );
 };
